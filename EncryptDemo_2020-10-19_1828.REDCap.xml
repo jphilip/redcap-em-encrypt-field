@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:redcap="https://projectredcap.org" xsi:schemaLocation="http://www.cdisc.org/ns/odm/v1.3 schema/odm/ODM1-3-1.xsd" ODMVersion="1.3.1" FileOID="000-00-0000" FileType="Snapshot" Description="Encrypt demo" AsOfDateTime="2020-10-19T18:28:38" CreationDateTime="2020-10-19T18:28:38" SourceSystem="REDCap" SourceSystemVersion="10.3.3">
+<Study OID="Project.EncryptDemo">
+<GlobalVariables>
+	<StudyName>Encrypt demo</StudyName>
+	<StudyDescription>This file contains the metadata, events, and data for REDCap project "Encrypt demo".</StudyDescription>
+	<ProtocolName>Encrypt demo</ProtocolName>
+	<redcap:RecordAutonumberingEnabled>1</redcap:RecordAutonumberingEnabled>
+	<redcap:CustomRecordLabel></redcap:CustomRecordLabel>
+	<redcap:SecondaryUniqueField></redcap:SecondaryUniqueField>
+	<redcap:SchedulingEnabled>0</redcap:SchedulingEnabled>
+	<redcap:SurveysEnabled>1</redcap:SurveysEnabled>
+	<redcap:SurveyInvitationEmailField></redcap:SurveyInvitationEmailField>
+	<redcap:Purpose>0</redcap:Purpose>
+	<redcap:PurposeOther></redcap:PurposeOther>
+	<redcap:ProjectNotes></redcap:ProjectNotes>
+	<redcap:MissingDataCodes></redcap:MissingDataCodes>
+</GlobalVariables>
+<MetaDataVersion OID="Metadata.EncryptDemo_2020-10-19_1828" Name="Encrypt demo" redcap:RecordIdField="record_id">
+	<FormDef OID="Form.consent" Name="Consent" Repeating="No" redcap:FormName="consent">
+		<ItemGroupRef ItemGroupOID="consent.record_id" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="consent.consent_timestamp" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="consent.consent_complete" Mandatory="No"/>
+	</FormDef>
+	<FormDef OID="Form.demo" Name="demo" Repeating="No" redcap:FormName="demo">
+		<ItemGroupRef ItemGroupOID="demo.demo_timestamp" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="demo.demo_complete" Mandatory="No"/>
+	</FormDef>
+	<ItemGroupDef OID="consent.record_id" Name="Consent" Repeating="No">
+		<ItemRef ItemOID="record_id" Mandatory="No" redcap:Variable="record_id"/>
+		<ItemRef ItemOID="redcap_survey_identifier" Mandatory="No" redcap:Variable="redcap_survey_identifier"/>
+		<ItemRef ItemOID="consent_timestamp" Mandatory="No" redcap:Variable="consent_timestamp"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="consent.consent_timestamp" Name="Consent" Repeating="No">
+		<ItemRef ItemOID="consent_timestamp" Mandatory="No" redcap:Variable="consent_timestamp"/>
+		<ItemRef ItemOID="f_name" Mandatory="Yes" redcap:Variable="f_name"/>
+		<ItemRef ItemOID="signature" Mandatory="Yes" redcap:Variable="signature"/>
+		<ItemRef ItemOID="other_field" Mandatory="No" redcap:Variable="other_field"/>
+		<ItemRef ItemOID="other_2" Mandatory="No" redcap:Variable="other_2"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="consent.consent_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="consent_complete" Mandatory="No" redcap:Variable="consent_complete"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="demo.demo_timestamp" Name="demo" Repeating="No">
+		<ItemRef ItemOID="demo_timestamp" Mandatory="No" redcap:Variable="demo_timestamp"/>
+		<ItemRef ItemOID="no_crypt_instrument_tag" Mandatory="No" redcap:Variable="no_crypt_instrument_tag"/>
+		<ItemRef ItemOID="no_crypt_instrument_tag_2" Mandatory="No" redcap:Variable="no_crypt_instrument_tag_2"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="demo.demo_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="demo_complete" Mandatory="No" redcap:Variable="demo_complete"/>
+	</ItemGroupDef>
+	<ItemDef OID="record_id" Name="record_id" DataType="text" Length="999" redcap:Variable="record_id" redcap:FieldType="text">
+		<Question><TranslatedText>Record ID</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="redcap_survey_identifier" Name="redcap_survey_identifier" DataType="text" Length="999" redcap:Variable="redcap_survey_identifier">
+		<Question><TranslatedText>Survey Identifier</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="consent_timestamp" Name="consent_timestamp" DataType="datetime" Length="999" redcap:Variable="consent_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="consent_timestamp" Name="consent_timestamp" DataType="datetime" Length="999" redcap:Variable="consent_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="f_name" Name="f_name" DataType="text" Length="999" redcap:Variable="f_name" redcap:FieldType="text" redcap:Identifier="y" redcap:RequiredField="y" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>First name</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="signature" Name="signature" DataType="text" Length="999" redcap:Variable="signature" redcap:FieldType="textarea" redcap:Identifier="y" redcap:RequiredField="y" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>Signature</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="other_field" Name="other_field" DataType="text" Length="999" redcap:Variable="other_field" redcap:FieldType="text">
+		<Question><TranslatedText>Other field (not crypted)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="other_2" Name="other_2" DataType="boolean" Length="1" redcap:Variable="other_2" redcap:FieldType="yesno" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>Non text field (Ignored even if @ENCRYPT_FIELD is set)</TranslatedText></Question>
+		<CodeListRef CodeListOID="other_2.choices"/>
+	</ItemDef>
+	<ItemDef OID="consent_complete" Name="consent_complete" DataType="text" Length="1" redcap:Variable="consent_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="consent_complete.choices"/>
+	</ItemDef>
+	<ItemDef OID="demo_timestamp" Name="demo_timestamp" DataType="datetime" Length="999" redcap:Variable="demo_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="no_crypt_instrument_tag" Name="no_crypt_instrument_tag" DataType="text" Length="999" redcap:Variable="no_crypt_instrument_tag" redcap:FieldType="text">
+		<Question><TranslatedText>No crypt instrument (field with no tag)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="no_crypt_instrument_tag_2" Name="no_crypt_instrument_tag_2" DataType="text" Length="999" redcap:Variable="no_crypt_instrument_tag_2" redcap:FieldType="text" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>No crypt instrument (field with tag)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="demo_complete" Name="demo_complete" DataType="text" Length="1" redcap:Variable="demo_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="demo_complete.choices"/>
+	</ItemDef>
+	<CodeList OID="other_2.choices" Name="other_2" DataType="boolean" redcap:Variable="other_2">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Yes</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>No</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="consent_complete.choices" Name="consent_complete" DataType="text" redcap:Variable="consent_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="demo_complete.choices" Name="demo_complete" DataType="text" redcap:Variable="demo_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+</MetaDataVersion>
+</Study>
+<ClinicalData StudyOID="Project.EncryptDemo" MetaDataVersionOID="Metadata.EncryptDemo_2020-10-19_1828">
+	<SubjectData SubjectKey="1" redcap:RecordIdField="record_id">
+			<FormData FormOID="Form.consent" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="consent.record_id" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="record_id" Value="1"/>
+					<ItemData ItemOID="consent_timestamp" Value="2020-10-19 18:13:25"/>
+					<ItemData ItemOID="f_name" Value="{&quot;payload&quot;:&quot;2U15aVCukvcDKvmjzjShjw==&quot;,&quot;token&quot;:&quot;TWoRf5tsS3Wm7eqG7BpxNxIifncTwvRoph233On5rEt6Go45YsG009xze4NS6zQnKH/Lg50Rvzx1mix/t1EkKfy1QMy/VQ3ch7BBmbAwJPs7cPWLRyV7pMUWKx4P77GPtg8oA8ThQfwNebpbQSDhjPwQopAriDRIkGYiikdH2j5UNGm3qsDEwcjKLTdKG9sKNaTCycq2gvvSCBAeqJQuSbkn8YTO2o2g1JvBtDC+ryOYG0QtDzZWi9FQoCbGrtOhYsBkDEn6waGsNR1UjKQZ1xZkdGSCRLFED3L4CYsOWCxEwmhOI4zqY+Gi2Dd2mYMNl6w1Fy12tmLpUJsfBFhgnsI1MtkOBEP+Bzh3TnyA225d7OHeMuG1f+lQRq7fLUcIc81EEiaoz6b9IS3gn2vrGipXheDRpUyWfe45ASmb0OET0PjcdU4Fj/4oDCSxE69akA5cAHAV2tAL+/U5lU5uV0eF4mIotKRCDOCUVSzMs99p9Ji6+dwFW569yfJ/leU+&quot;,&quot;iv&quot;:&quot;7jNkt2plChh58ZzrCONAGw==&quot;}"/>
+					<ItemData ItemOID="signature" Value="{&quot;payload&quot;:&quot;M2wtBAZN0SEgL+3FAlevQg==&quot;,&quot;token&quot;:&quot;nfr9238A6zj4667v3+gTbDy/QNcVAo8/gvHCoHxj0xch4QpoRM3f4q4EGk1/e4kFXSWBGfQKm2cj8b7d5v5gCt4ZXIIf4q1FsOQD2irhvoCEz0zrRyJsq/oh2ToHA1sIS/kn9+QVQ5ziLfFi+zIWQogIBF9FO3nNB6NipR+qykeRxKyw9LuxBEUvIKRv4A33bckiTJyUCV5ob257blWBnABXjyKZ22KkK+wT6m62jh3Hn/gymrEriq/SsWj822v+u0RXgWdn5jqzkFTpsqL/UupJhDcPwTcmvGdiUo+HSN/qLoL7W9XY0YFAbUyGs7DyXXeIrl84khZ1QWogrEDK0OZjwwDrfsjE8gVSIc3OVRWwnAbNbb/wtt5jHLBgxLInNFtuCmGsgBSgDwLSbuzxIm/UWTzuMnLqIdH6BIpEJ/rUVnnTnXRZBBpJWlScN/HYa+ufcz80MRhww5FlyeSq80faOy4z+vzIJLPfdtfrd7r7r6kUC1nLPgDL+TC1P/wT&quot;,&quot;iv&quot;:&quot;aEQTjR9aB7smd+n/Hgum7w==&quot;}"/>
+					<ItemData ItemOID="other_field" Value="aaaaaa"/>
+					<ItemData ItemOID="other_2" Value="0"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="consent.consent_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="consent_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.demo" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="demo.demo_timestamp" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_timestamp" Value="2020-10-19 18:13:35"/>
+					<ItemData ItemOID="no_crypt_instrument_tag" Value="aaaaaa"/>
+					<ItemData ItemOID="no_crypt_instrument_tag_2" Value="aaaaaa"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="demo.demo_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+	</SubjectData>
+	<SubjectData SubjectKey="2" redcap:RecordIdField="record_id">
+			<FormData FormOID="Form.consent" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="consent.record_id" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="record_id" Value="2"/>
+					<ItemData ItemOID="consent_timestamp" Value="2020-10-19 18:15:41"/>
+					<ItemData ItemOID="f_name" Value="{&quot;payload&quot;:&quot;YUwqFUKbh0CU3IY2QfhVqu4OA1dp909OVYdx2C1P58A=&quot;,&quot;token&quot;:&quot;jVXuCf7QF+u+B6jqA8a6R2fABZat86/UD1cAO3lKJLwAoPd9AC6vO4kTVJnKZC3D9G3YkjRQe++WIqrq3wV51RkxIVWrHaE4+TfoHbhyCHIOzxwYMlbC+Uq4gY6TsqarKqb2IlB+TK11kONqiGW8AxcKddAACV1UHoyyaKRQ2miax2HaaHMCrBMLW5gfBFd2rQdQnrcexrHsyKvKrBH3OhnJ3BlWAu3WsfnqTpR421ICSxiAqVuNMzr4YAA6hhcoGYep/VGYVtA+L8IIiWGbrC9tiao8RM+zXrbN4uqdgaLpV6hs2YjAIrFKkI/4gNsnlXzKy++q+p/EnoLDVfXCGOjue3BNGRRGARbHvOlaT724ORjd7kWyVOcjE7H2i6MzcIMmZ+1zZVPZUQM7wzTmr/MKKtidrdIcDRoHYzL7iDP6JQTOVfLcLvrcrMXhJkmT3HmAnFQTU3BmNQt16SU8d77/mUHSS3pWQQci8eALRqL+uej/PTxczMvX9yHQecCP&quot;,&quot;iv&quot;:&quot;3iORMsck8Lj1TGzhgApicw==&quot;}"/>
+					<ItemData ItemOID="signature" Value="{&quot;payload&quot;:&quot;Q0xVQC6Y6abrOrmjhklEgtzb4iRfEmoLFvTESX0/R88XR/vbJl6N0PVNpieLwZ7W0SBKtW0/yhOgDAeX1/HPV40FPGL3aNEGRMrfeGHeNSVI4fwUpBB5a4sSO22+rGIJ8FvVODaVe2FHXIwmcO0FU9MYET68kv+BUeTCxQBWIv9SzLwDJDHKiLMdoYk7t8OAoEehqUFXPrd/A9jiE/NSyXRfleb2zdWu7M6XVEONKYfl3CzzER0TdnWPCrco5VJaAy9f3Cx5dXI4WcDEntilESDhBCveZ9OkqfDzvu7UeSXAcTp41qq/2VJIrdH0vyUy2jF94nyAUxVihc3LfpIou0ZkbGCOkoPH32n/ctdp/dNaFDza2xoJ3kVJGOzTEB10BnG7XKSOwl4G3BB9TH13JOkVZLSsJDM4Zah3dSlqFJHsNfzXWUQJ11D2hXQtH8v21X5eNMmudOf3tJUrIzzXBPkYOe2GmDbtiP8EqxDyEoeMdQ5YYplEe/l0o/kHhIH2LNAPwCEf53segBHJA2ZuUbVnNIabwoqgIf38iea+hkvF/4IQGZra7rZwQWvi7BNsfkuavCfnVSv77KwuEmSjzs8JwEhiCJNCHVUEE6BBn0294l3O135lDAGdrJIZAC4E4Xw4N3fx2AILSWH7/qd+oTNU1LLoydtpXd3gjBCR9ig79CRHLJMU7knZ0jvdkiwT6R0Yq6LEzzv+B4m6oTXac8kVwMzP1tI5X0w7ETgBrGxdIIue6iD6avk8yjVW5y3W&quot;,&quot;token&quot;:&quot;Zs8hN8ycFHIJEtzNHPVwAoXZ8ZNI/0wd+fdMeAl65JhB8+7LQMBBw+1JOrJQw9KOlgTr8eeL8wrIlSc1/SV45cdu7qdZwW2OEHpEKn5442Mn66jlZdvw34MwnXtvseSZDtMFD3T1FK11Z0dCduMuv6SCCq53IhkKPwOmQ+JHoLTV6/QKlHsk1Wcfi6qM/YUvBZewi5KTzc8wRoiVg0KBMSdNtzC8LdP9cMcdgFdQdObsUeScJV818b0NvVDcsGC08d3aMHYNMbUqt43lEeteUdT77V5InJt0IVVuVNaVojly+Pb3ZJCA4RIAS0n3TvLDUJq9CfOtpEAaYDEEp8nehGtGdpfyRZG9NHkw2JE8JoIDJjkPPZ0/wA4vSEdUodB0KWajC7bDMOjWX18mXPTCQAjH91drySUjGNOaObJxULVPF9vpnG8OHEsBOj4HbEijoNhvkOhsotoT5idr+dB6ud9cSOpImh2WRQl13l/xIUF1XXNbk0XyavCq+Kc0n7ui&quot;,&quot;iv&quot;:&quot;8PDhTt2O9KtLQNfMqEkzUA==&quot;}"/>
+					<ItemData ItemOID="other_field" Value="Should not be decrypted (error)"/>
+					<ItemData ItemOID="other_2" Value="0"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="consent.consent_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="consent_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.demo" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="demo.demo_timestamp" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_timestamp" Value="2020-10-19 18:15:51"/>
+					<ItemData ItemOID="no_crypt_instrument_tag" Value="bbbbbbb"/>
+					<ItemData ItemOID="no_crypt_instrument_tag_2" Value="bbbbbb"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="demo.demo_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+	</SubjectData>
+	<SubjectData SubjectKey="3" redcap:RecordIdField="record_id">
+			<FormData FormOID="Form.consent" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="consent.record_id" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="record_id" Value="3"/>
+					<ItemData ItemOID="consent_timestamp" Value="2020-10-19 18:16:51"/>
+					<ItemData ItemOID="f_name" Value="{&quot;payload&quot;:&quot;yEMDbn6/1XkaHECp+nsh/DZC6pZKFp9LQJR4E3FQoxY=&quot;,&quot;token&quot;:&quot;LsESXgkYFfVQW5/KaYxtsZo6Z2tgpncyDL1OHroZklbAmIJQJmZvv9roCMhTageMN4T9WArHMz2XTCaz7xRhOjoB6dd5f2WPEsBxhKISNnn/46wx9fPSsNh7NPbkuRxtsgpkoskH1plqSUzpr//I2qRfTbHgIf/jAs+akHiqzt65POnRSqqLP1lk7DwmYlPUZEiX3KkiR9tk4ZE0VGW6RNFvhy+gLswCfvUbZaXVnsCcIr1RB8Y7qrWh4984Tgl7bArcZ7e+O2VzWl+T+Nn1Sic+Ve3vrcFFDIxvXU/tfA69hSpZEbWteb1qEFT+sqsmLyEGo4zS3PGYfQlNgZzJBboCrHPags8hoV551JUwU20LC+SQeWws1jOwEzwmY7+uP55bkSi3j1GuIZHC0/UXiq1CeOhywiHsjYVVLp5dx741OqX7v68pTXIipt1wKBjxwJx0AoTC4Gpf/0mA3Yt1mSTxfl7/lZaK6P8qgI2+5Af5ASY1cozCDnO05x95NP9V&quot;,&quot;iv&quot;:&quot;NQTdCd9fze+CC1rlszWIDQ==&quot;}"/>
+					<ItemData ItemOID="signature" Value="{&quot;payload&quot;:&quot;+rRjGLblntL2YQ10x7kr1xul5FX5cDxFFxjlB8I0QUzLVWhcukZ7d27qeCMiz7I6izKgMPGuP46e3giIfH5APLrW8V0nBjPE5RkrTsDFBlWcqi/uV2xzrbqLfWqbbcn3N7BBIQl3DX6adVoc891RzHr0MPJzslwBEXnJ0oHP//8celi3kMZr4jxv2tOSbIZM/knRepGbzI+OUfgZna/z3/YSQK/hrZn7BuU6LwZqn4maN3dEV+25ZkjJk29MlRSZSeKGDOSEHGRkkVTQSVa6LJS5MkCgXNckVSB+BwAthVmlh+kwCumhDGiCMrZVJXmmSi3XIKQmgjETG2bMZ6lvZ0723apCpHo7jcdkhaOfmpRSs7ywK76yjOlXSyUcDz/IwE0UHu2J47975kKsg+yylj8tQBXVbXFKeEg5uLFA21DZcEaj3HEhdKmwumY6wleKvG5nbXBGApctLKAuUW0rDPiJXSf5BlzD0qnPo9+twDT8g9CIJ+Dv/zU5+J0663LWkGbEhJO5eltzDUhCySaYTv7ZcArMFAg4+n/2zOWcJvyFXlHw+ljHL12QoO3XuKiGWwQenDUd6KSZbL0wfl0nfj20+FDeMw32FxNbgsskvmrTb7nUVFcokiVWmpP0QUEeZupY+k+wd9TvrOZYyyLfS0c/Pj79mqdxOIFzHsBgcwzZNzxCulmKs0mHoGydHh2xn6YGsMmdy9I4hWGdWgwk0oKVdJZTtpfdQfTLxjTa5pFQJ0vY2n4aTZtoKgRFyUrmUoJqqIt2MtUPiQb/5b6SYQ==&quot;,&quot;token&quot;:&quot;buFmZ0sRgIbLs6X6hWdQFhdTdprvfIdhQFCPBmjL+zqGpgrWLBR3m6U4KIbZ9PdUBu8wHYSErcxZ8jB9cjnb5u3e/r5k9B90f7e2nQy8sPx8ekZgFXCw2vkHjmJOPQ4j+d/zFY7W1YeN5/HrZU5/ZAE0Hb2AaGxPANKx9EMXx7v3yAQ11CR5IukPXczFOaoTKWBHlW0poj8KVZNhIPAFnkdqr6xX4erRgygMBEe5n8mNMW4eJAwh+wIOizt7ij6YTDmrt4GM3KJw0YUSYzNYoHoRpnE65DqrBO3coPIrLd4QXQIOl5bTp/rZEaj1+TwE/6DTBzI7qygLl4btfLmEUNWruFs1gxuGdXqCeEC80dbrc8Wov+M5HK7QO2VH88F6t/7JmUKUxSoEyW8bgU4OJfHyUBo9+jm8T5mCtSudtRAzSGcjtMnub4lrN9oJAzGpMGbM+2xdQjHf3GGv03qwd9LpcIzWIQRvRY0cuOuInT2GcTciRsyHlieOHiKOb40a&quot;,&quot;iv&quot;:&quot;Mr2pYpmiGdxwmcg3ZRYAGQ==&quot;}"/>
+					<ItemData ItemOID="other_field" Value="Should not be decrypted"/>
+					<ItemData ItemOID="other_2" Value="0"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="consent.consent_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="consent_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.demo" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="demo.demo_timestamp" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_timestamp" Value="2020-10-19 18:17:01"/>
+					<ItemData ItemOID="no_crypt_instrument_tag" Value="dddddd"/>
+					<ItemData ItemOID="no_crypt_instrument_tag_2" Value="dddddd"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="demo.demo_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+	</SubjectData>
+</ClinicalData>
+</ODM>

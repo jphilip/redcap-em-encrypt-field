@@ -1,0 +1,44 @@
+{
+   "name": "Encrypt Field Module",
+   "namespace": "CANHR\\EncryptFieldExternalModule", 
+   "description": "This module provides a way to encrypt some fields of an instrument.",
+   "versions": [
+      {
+        "0.1.0": "Initial Development Version"
+      }
+    ],  
+   "documentation": "README.md",
+   "authors": [
+       {
+         "name": "Jacques Philip",
+         "email": "jphilip@alaska.edu",
+         "institution": "University of Alaska Fairbanks"
+        }
+    ],
+    "permissions": [
+        "redcap_every_page_before_render"
+    ],
+    "enable-every-page-hooks-on-system-pages": false,
+    "system-settings" : [
+    ],
+   "project-settings" : [
+      {
+         "key": "project-form-list",
+         "name": "Form(s) where encrypt field is enabled",
+         "required": true,
+         "type": "form-list",
+         "repeatable":true
+      },
+      {
+         "key": "public-key",
+         "name": "RSA public key in open SSL pem format",
+         "required": true,
+         "type": "textarea",
+         "repeatable":false
+      }
+	],
+  "compatibility": {
+    "php-version-min" : "7.2.10",
+    "redcap-version-min": "10.3.3"
+  }   
+}
