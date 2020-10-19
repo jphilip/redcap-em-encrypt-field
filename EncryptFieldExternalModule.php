@@ -78,7 +78,7 @@ class EncryptFieldExternalModule extends AbstractExternalModule {
         return;
       }
 
-      $fields = REDCap::getDataDictionary('array', false, true, $instrument);
+      $fields = REDCap::getDataDictionary('array', false, true, $form_name);
 
       foreach ($fields as $this_field) {
         if(in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
