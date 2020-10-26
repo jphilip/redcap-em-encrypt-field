@@ -36,7 +36,18 @@
          "type": "textarea",
          "repeatable":false
       }
-	],
+  ],
+  "links": {
+    "project": [
+       {
+          "name": "Load decryption key",
+          "key": "privkey",
+          "icon": "key",
+          "url": "key.php",
+          "show-header-and-footer": true
+       }
+    ]
+  },
   "compatibility": {
     "php-version-min" : "7.2.10",
     "redcap-version-min": "10.3.3"
