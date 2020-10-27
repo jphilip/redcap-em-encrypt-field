@@ -35,6 +35,20 @@
          "required": true,
          "type": "textarea",
          "repeatable":false
+      },
+      {
+         "key": "private-key-ttl",
+         "name": "Number of minutes of incativity until the decription key is unloaded",
+         "required": true,
+         "type": "dropdown",
+         "repeatable": false,
+         "super-users-only": true,
+         "choices": [
+            { "value": "10", "name": "10"},
+            { "value": "20", "name": "20"},
+            { "value": "30", "name": "30"}
+         ],
+         "default": "10"
       }
   ],
   "links": {

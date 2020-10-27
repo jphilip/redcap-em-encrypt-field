@@ -5,9 +5,10 @@
  * @author Jacques Philip, Center for Alaska Native Health Research, University of Alaska Fairbanks
  */
 
-$ttl = 120;
 $apcu_key = session_id() . "_" . USERID;
 $encryptField = new \CANHR\EncryptFieldExternalModule\EncryptFieldExternalModule();
+$ttl = intval($encryptField->getProjectSetting('private-key-ttl')) * 60;
+
 function PrintKeyForm() {
     print('<form method="post" class="darkgreen" style="max-width:650px;padding:20px;">');
     print('<div><label for="key">Paste your decryption key below:</label></div>');
@@ -23,10 +24,17 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     $errors = array();
     if (!isset($_POST['key']) || $_POST['key']==='') {
         $errors[] = "The key cannot be empty";
-    } 
+    }
+    else
+    {
+        if (!$encryptField->TestPrivateKey($_POST['key'])) {
+            $errors[] = "Invalid decription key.";
+        }
+    }
 
     if (!empty($errors)) {
         $_SESSION["crypt_key_import_error"] = $errors;
+        apcu_delete($apcu_key);
         if (isset($_SESSION["crypt_key_import_success"])) {
             unset($_SESSION["crypt_key_import_success"]);
         }
@@ -42,9 +50,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 }
 else
 {
-    if (apcu_exists($apcu_key)) {
-        print('<p class="green" style="margin:20px 0;"> Acpu key: ' . $apcu_key . " has value: " . apcu_fetch($apcu_key) . "</p>");
-    }
     if (isset($_SESSION["crypt_key_import_error"])){
         $errors = $_SESSION["crypt_key_import_error"];
         print('<div class="red" style="margin:20px 0;">');
@@ -56,12 +61,18 @@ else
         PrintKeyForm();
     }
     elseif (isset($_SESSION["crypt_key_import_success"])) {
-        print('<div class="green" style="margin:20px 0;">The decription key was imported</div><br/>');
+        $ttl_min = round($ttl/60);
+        print('<div class="green" style="margin:20px 0;">The decription key was imported. It will be unloaded after ' . $ttl_min .' minutes of incactivity.</div><br/>');
         unset($_SESSION["crypt_key_import_success"]);
     }
     else
-    {
-        PrintKeyForm();
+    {        
+        if (apcu_exists($apcu_key)) {
+            print('<p class="green" style="margin:20px 0;">A decription key is currently loaded.</p>');
+        }
+        else {
+            PrintKeyForm();
+        }
     }
 }
 

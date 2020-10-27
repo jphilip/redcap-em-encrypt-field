@@ -22,7 +22,7 @@ class EncryptFieldExternalModule extends AbstractExternalModule {
     parent::__construct();
   }
 
-  function encrypt_field($data) {
+  private function EncryptField($data) {
     if ($this->pub_key === "") {
       $this->pub_key = $this->getProjectSetting('public-key');
     }
@@ -41,6 +41,26 @@ class EncryptFieldExternalModule extends AbstractExternalModule {
     $j->iv = $iv;
     $json = json_encode($j, JSON_UNESCAPED_SLASHES);
     return($json);
+  }
+
+  private function DecryptField($data, $priv_key) {
+    $sealed = json_decode($data);
+
+    $token = base64_decode($sealed->token);
+    $payload = base64_decode($sealed->payload);
+    $iv = base64_decode($sealed->iv);
+    $unsealed = NULL;
+    $pkeyid = openssl_get_privatekey($priv_key);
+    $result = openssl_open($payload, $unsealed, $token, $pkeyid, "AES-256-CBC", $iv);
+    // free the private key from memory (although it stays in Apcu cache until it times out.)
+    openssl_free_key($pkeyid);
+    return($result ? $unsealed : FALSE);
+  }
+
+  function TestPrivateKey($priv_key) {
+    $plain = "Test data to encrypt";
+    $enc = $this->EncryptField($plain);
+    return $this->DecryptField($enc, $priv_key) === $plain;
   }
 
   function redcap_every_page_before_render ($project_id){
@@ -82,7 +102,7 @@ class EncryptFieldExternalModule extends AbstractExternalModule {
 
       foreach ($fields as $this_field) {
         if(in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
-          $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
+          $_POST[$this_field["field_name"]] =  $this->EncryptField($_POST[$this_field["field_name"]]);
         }
       }      
     }
