@@ -24,6 +24,12 @@
     ],
    "project-settings" : [
       {
+         "key": "enable-decryption",
+         "name": "Enable decryption in data entry form",
+         "type": "checkbox",
+         "repeatable":false
+      },
+      {
          "key": "project-form-list",
          "name": "Form(s) where encrypt field is enabled",
          "required": true,

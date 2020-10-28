@@ -68,7 +68,9 @@ if (strtoupper($_SERVER['REQUEST_METHOD'])=='POST') {
         print('<div class="green" style="margin:20px 0;">The decryption key was imported. It will be unloaded after ' . $ttl_min .' minutes of incactivity.</div><br/>');
         unset($_SESSION["crypt_key_import_success"]);
     } else {
-        if (apcu_exists($apcu_key)) {
+        if (!$encryptField->getProjectSetting('enable-decryption')) {
+            print('<p class="red" style="margin:20px 0;">Decryption is not enabled in the module\'s project settings.</p>');
+        } elseif (apcu_exists($apcu_key)) {
             print('<p class="green" style="margin:20px 0;">A decryption key is currently loaded.</p>');
         } else {
             PrintKeyForm();
