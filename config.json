@@ -16,7 +16,8 @@
         }
     ],
     "permissions": [
-        "redcap_every_page_before_render"
+        "redcap_every_page_before_render",
+        "redcap_data_entry_form"
     ],
     "enable-every-page-hooks-on-system-pages": false,
     "system-settings" : [
@@ -38,7 +39,7 @@
       },
       {
          "key": "private-key-ttl",
-         "name": "Number of minutes of incativity until the decription key is unloaded",
+         "name": "Number of minutes of incativity until the decryption key is unloaded",
          "required": true,
          "type": "dropdown",
          "repeatable": false,
