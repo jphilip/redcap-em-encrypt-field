@@ -14,78 +14,86 @@ use ExternalModules\AbstractExternalModule;
 use ExternalModules\ExternalModules;
 use REDCap;
 
-class EncryptFieldExternalModule extends AbstractExternalModule {
+class EncryptFieldExternalModule extends AbstractExternalModule
+{
+    private $pub_key = "";
 
-  private $pub_key = "";
-
-  public function __construct() {
-    parent::__construct();
-  }
-
-  function encrypt_field($data) {
-    if ($this->pub_key === "") {
-      $this->pub_key = $this->getProjectSetting('public-key');
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    $sealed = $e = NULL;
-    $iv = openssl_random_pseudo_bytes(32);
-    openssl_seal($data, $sealed, $e, array($this->pub_key), "AES-256-CBC", $iv);
+    public function encrypt_field($data)
+    {
+        if ($this->pub_key === "") {
+            $this->pub_key = $this->getProjectSetting('public-key');
+        }
 
-    $payload = base64_encode($sealed);
-    $token = base64_encode($e[0]);
-    $iv = base64_encode($iv);
+        $sealed = $e = null;
+        $iv = openssl_random_pseudo_bytes(32);
+        openssl_seal($data, $sealed, $e, array($this->pub_key), "AES-256-CBC", $iv);
 
-    $j = new \stdClass();
-    $j->payload = $payload;
-    $j->token = $token;
-    $j->iv = $iv;
-    $json = json_encode($j, JSON_UNESCAPED_SLASHES);
-    return($json);
-  }
+        $payload = base64_encode($sealed);
+        $token = base64_encode($e[0]);
+        $iv = base64_encode($iv);
 
-  function redcap_every_page_before_render ($project_id){
-    if (PAGE !== "surveys/index.php") {
-      return;
+        $j = new \stdClass();
+        $j->payload = $payload;
+        $j->token = $token;
+        $j->iv = $iv;
+        $json = json_encode($j, JSON_UNESCAPED_SLASHES);
+        return($json);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_GET['s'])) {
-      $hash = $_GET['s'];
-      $sql = "select s.*, h.* from redcap_surveys s, redcap_surveys_participants h, redcap_metadata m
+    private function CheckEncForm($form_name)
+    {
+        //Check if the current form is set for encryption
+        $forms = $this->getProjectSetting('project-form-list');
+        if (!is_array($forms) || count($forms) == 0) {
+            return false;
+        }
+
+        $enc_form = false;
+        foreach ($forms as $form) {
+            if ($form === $form_name) {
+                $enc_form = true;
+                break;
+            }
+        }
+        return $enc_form;
+    }
+
+    public function redcap_every_page_before_render($project_id)
+    {
+        if (PAGE !== "surveys/index.php") {
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST" && strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
+            $hash = $_GET['s'];
+            $sql = "select s.*, h.* from redcap_surveys s, redcap_surveys_participants h, redcap_metadata m
                 where h.hash = '".db_escape($hash)."' and s.survey_id = h.survey_id and m.project_id = s.project_id 
                 and m.form_name = s.form_name and h.event_id is not null limit 1";
-      $q = db_query($sql);
-      $res = db_fetch_assoc($q);
-      if (!$res)
-        return;
-      $survey_id = $res["survey_id"];
-      $form_name = $res["form_name"];
-      $event_id = $res["event_id"];
+            $q = db_query($sql);
+            $res = db_fetch_assoc($q);
+            if (!$res) {
+                return;
+            }
+            $survey_id = $res["survey_id"];
+            $form_name = $res["form_name"];
+            $event_id = $res["event_id"];
 
-      $forms = $this->getProjectSetting('project-form-list');
-      if (!is_array($forms) || count($forms) == 0) {
-        return;
-      }
+            if (!$this->CheckEncForm($form_name)) {
+                return;
+            }
 
-      $enc_form = false;
-      foreach($forms as $form) {
-        if ($form === $form_name) {
-          $enc_form = true;
-          break;
+            $fields = REDCap::getDataDictionary('array', false, true, $form_name);
+
+            foreach ($fields as $this_field) {
+                if (in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
+                    $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
+                }
+            }
         }
-      }
-
-      if (!$enc_form) {
-        return;
-      }
-
-      $fields = REDCap::getDataDictionary('array', false, true, $form_name);
-
-      foreach ($fields as $this_field) {
-        if(in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
-          $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
-        }
-      }      
     }
-  }
-
 }
