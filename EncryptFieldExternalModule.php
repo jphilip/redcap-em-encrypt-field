@@ -17,6 +17,7 @@ use REDCap;
 class EncryptFieldExternalModule extends AbstractExternalModule
 {
     private $pub_key = "";
+    private $encrypted_str = "Encrypted field (cannot be modified)";
 
     public function __construct()
     {
@@ -45,6 +46,32 @@ class EncryptFieldExternalModule extends AbstractExternalModule
         return($json);
     }
 
+    public function redcap_data_entry_form($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance)
+    {
+        if (!$this->CheckEncForm($instrument)) {
+            return;
+        }
+
+        $fields = \REDCap::getDataDictionary('array', false, true, $instrument);
+
+        $enc_fields = array();
+        foreach ($fields as $this_field) {
+            if (in_array($this_field['field_type'], array( 'text', 'notes' )) && strpos($this_field['field_annotation'], '@ENCRYPT_FIELD') !== false) {
+                $enc_fields[] = $this_field;
+            }
+        }
+        if (count($enc_fields) > 0) {
+            $js = "<script type='text/javascript'>\n";
+            foreach ($enc_fields as $enc_field) {
+                $dec_str = "'{$this->encrypted_str}'";
+                $js .= "\$('[name=${enc_field["field_name"]}]').prop('readonly', true);\n";
+                $js .= "\$('[name=${enc_field["field_name"]}]').val($dec_str);\n";
+            }
+            $js .= "</script>";
+            echo($js);
+        }
+    }
+
     private function CheckEncForm($form_name)
     {
         //Check if the current form is set for encryption
@@ -65,11 +92,11 @@ class EncryptFieldExternalModule extends AbstractExternalModule
 
     public function redcap_every_page_before_render($project_id)
     {
-        if (PAGE !== "surveys/index.php") {
+        if (!(strtoupper($_SERVER['REQUEST_METHOD']) === 'POST')) {
             return;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST" && strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
+        if (strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
             $hash = $_GET['s'];
             $sql = "select s.*, h.* from redcap_surveys s, redcap_surveys_participants h, redcap_metadata m
                 where h.hash = '".db_escape($hash)."' and s.survey_id = h.survey_id and m.project_id = s.project_id 
@@ -92,6 +119,23 @@ class EncryptFieldExternalModule extends AbstractExternalModule
             foreach ($fields as $this_field) {
                 if (in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
                     $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
+                }
+            }
+        } elseif (strtolower(PAGE) === 'dataentry/index.php') {
+            $pid = $_GET["pid"];
+            $event_id = $_GET["event_id"];
+            $form_name = $_GET["page"];
+            $instance = $_GET["instance"];
+
+            if (!$this->CheckEncForm($form_name)) {
+                return;
+            }
+
+            $fields = \REDCap::getDataDictionary('array', false, true, $form_name);
+
+            foreach ($fields as $this_field) {
+                if (in_array($this_field['field_type'], array( 'text', 'notes' )) && strpos($this_field['field_annotation'], '@ENCRYPT_FIELD') !== false) {
+                    unset($_POST[$this_field['field_name']]);
                 }
             }
         }
