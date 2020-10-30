@@ -92,50 +92,57 @@ class EncryptFieldExternalModule extends AbstractExternalModule
 
     public function redcap_every_page_before_render($project_id)
     {
-        if (!(strtoupper($_SERVER['REQUEST_METHOD']) === 'POST')) {
-            return;
-        }
-
-        if (strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
-            $hash = $_GET['s'];
-            $sql = "select s.*, h.* from redcap_surveys s, redcap_surveys_participants h, redcap_metadata m
+        if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
+            // Survey options page om POST
+            if (strtolower(PAGE) === "surveys/edit_info.php" && isset($_GET['page'])) {
+                if ($_POST["save_and_return"] != "0" && $this->CheckEncForm($_GET['page'])) {
+                    $_POST["save_and_return"] = "0";
+                    $_POST["save_and_return_code_bypass"] = "0";
+                    $_POST["edit_completed_response"] = "0";
+                }
+                // Survey on POST
+            } elseif (strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
+                $hash = $_GET['s'];
+                $sql = "select s.*, h.* from redcap_surveys s, redcap_surveys_participants h, redcap_metadata m
                 where h.hash = '".db_escape($hash)."' and s.survey_id = h.survey_id and m.project_id = s.project_id 
                 and m.form_name = s.form_name and h.event_id is not null limit 1";
-            $q = db_query($sql);
-            $res = db_fetch_assoc($q);
-            if (!$res) {
-                return;
-            }
-            $survey_id = $res["survey_id"];
-            $form_name = $res["form_name"];
-            $event_id = $res["event_id"];
-
-            if (!$this->CheckEncForm($form_name)) {
-                return;
-            }
-
-            $fields = REDCap::getDataDictionary('array', false, true, $form_name);
-
-            foreach ($fields as $this_field) {
-                if (in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
-                    $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
+                $q = db_query($sql);
+                $res = db_fetch_assoc($q);
+                if (!$res) {
+                    return;
                 }
-            }
-        } elseif (strtolower(PAGE) === 'dataentry/index.php') {
-            $pid = $_GET["pid"];
-            $event_id = $_GET["event_id"];
-            $form_name = $_GET["page"];
-            $instance = $_GET["instance"];
+                $survey_id = $res["survey_id"];
+                $form_name = $res["form_name"];
+                $event_id = $res["event_id"];
+                $save_and_return = $res["save_and_return"];
+                if (!$this->CheckEncForm($form_name)) {
+                    return;
+                }
 
-            if (!$this->CheckEncForm($form_name)) {
-                return;
-            }
+                $fields = REDCap::getDataDictionary('array', false, true, $form_name);
 
-            $fields = \REDCap::getDataDictionary('array', false, true, $form_name);
+                foreach ($fields as $this_field) {
+                    if (in_array($this_field["field_type"], array("text", "notes")) && strpos($this_field['field_annotation'], "@ENCRYPT_FIELD") !== false) {
+                        $_POST[$this_field["field_name"]] =  $this->encrypt_field($_POST[$this_field["field_name"]]);
+                    }
+                }
+                // Data entry form on POST
+            } elseif (strtolower(PAGE) === 'dataentry/index.php') {
+                $pid = $_GET["pid"];
+                $event_id = $_GET["event_id"];
+                $form_name = $_GET["page"];
+                $instance = $_GET["instance"];
 
-            foreach ($fields as $this_field) {
-                if (in_array($this_field['field_type'], array( 'text', 'notes' )) && strpos($this_field['field_annotation'], '@ENCRYPT_FIELD') !== false) {
-                    unset($_POST[$this_field['field_name']]);
+                if (!$this->CheckEncForm($form_name)) {
+                    return;
+                }
+
+                $fields = \REDCap::getDataDictionary('array', false, true, $form_name);
+
+                foreach ($fields as $this_field) {
+                    if (in_array($this_field['field_type'], array( 'text', 'notes' )) && strpos($this_field['field_annotation'], '@ENCRYPT_FIELD') !== false) {
+                        unset($_POST[$this_field['field_name']]);
+                    }
                 }
             }
         }
