@@ -19,9 +19,36 @@ class EncryptFieldExternalModule extends AbstractExternalModule
     private $pub_key = "";
     private $encrypted_str = "Encrypted field (cannot be modified)";
 
-    public function __construct()
+    public function validateSettings($settings)
     {
-        parent::__construct();
+        if (!isset($_GET["pid"])) {
+            return;
+        }
+
+        $forms = $settings['project-form-list'];
+        if (!is_array($forms) || count($forms) == 0) {
+            return null;
+        }
+       
+        $sql = "select s.* from redcap_surveys s where s.project_id = '".db_escape($_GET["pid"])."'";
+        $q = db_query($sql);
+
+        $invalid_forms = array();
+        while ($survey = db_fetch_assoc($q)) {
+            foreach ($forms as $enc_form) {
+                if ($enc_form == $survey["form_name"]) {
+                    if ($survey["save_and_return"] == "1") {
+                        $invalid_forms[] = $enc_form;
+                    }
+                    continue;
+                }
+            }
+        }
+        if (!empty($invalid_forms)) {
+            return("The encrypt field module is incompatible with the surveys' `Save and return later` option.
+The following surveys have both features enabled, please disable `Save and return later` or encryption for each of these form:\n"
+            . \implode(".\n", $invalid_forms) . ".");
+        }
     }
 
     public function encrypt_field($data)
