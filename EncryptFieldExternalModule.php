@@ -18,6 +18,7 @@ class EncryptFieldExternalModule extends AbstractExternalModule
 {
     private $pub_key = "";
     private $encrypted_str = "Encrypted field (cannot be modified)";
+    private $incompatible_options = array("Save and return later", "e-consent framework", "One section per page without hiding back button");
 
     public function validateSettings($settings)
     {
@@ -37,7 +38,7 @@ class EncryptFieldExternalModule extends AbstractExternalModule
         while ($survey = db_fetch_assoc($q)) {
             foreach ($forms as $enc_form) {
                 if ($enc_form == $survey["form_name"]) {
-                    if ($survey["save_and_return"] == "1") {
+                    if ($survey["save_and_return"] != "0" || $survey["pdf_auto_archive"] == "2" || ($survey["question_by_section"] == "1" &&  strtolower($survey["hide_back_button"]) != "1")) {
                         $invalid_forms[] = $enc_form;
                     }
                     continue;
@@ -45,8 +46,8 @@ class EncryptFieldExternalModule extends AbstractExternalModule
             }
         }
         if (!empty($invalid_forms)) {
-            return("The encrypt field module is incompatible with the surveys' `Save and return later` option.
-The following surveys have both features enabled, please disable `Save and return later` or encryption for each of these form:\n"
+            return("The encrypt field module is incompatible with the survey options " . implode(", ", $this->incompatible_options) . ".
+The following surveys has encryption and some of those options enabled, to use encryption please disable " . implode(", and ", $this->incompatible_options) . " for each of these form:\n"
             . \implode(".\n", $invalid_forms) . ".");
         }
     }
@@ -103,29 +104,24 @@ The following surveys have both features enabled, please disable `Save and retur
     {
         //Check if the current form is set for encryption
         $forms = $this->getProjectSetting('project-form-list');
-        if (!is_array($forms) || count($forms) == 0) {
-            return false;
-        }
-
-        $enc_form = false;
-        foreach ($forms as $form) {
-            if ($form === $form_name) {
-                $enc_form = true;
-                break;
-            }
-        }
-        return $enc_form;
+        return in_array($form_name, $forms);
     }
 
     public function redcap_every_page_before_render($project_id)
     {
         if (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') {
             // Survey options page om POST
-            if (strtolower(PAGE) === "surveys/edit_info.php" && isset($_GET['page'])) {
-                if ($_POST["save_and_return"] != "0" && $this->CheckEncForm($_GET['page'])) {
+            if (strtolower(PAGE) === "surveys/edit_info.php" && isset($_GET['page']) && $this->CheckEncForm($_GET['page'])) {
+                if ($_POST["save_and_return"] != "0") {
                     $_POST["save_and_return"] = "0";
                     $_POST["save_and_return_code_bypass"] = "0";
                     $_POST["edit_completed_response"] = "0";
+                }
+                if ($_POST["pdf_auto_archive"] == "2") {
+                    $_POST["pdf_auto_archive"] = "0";
+                }
+                if ($_POST["question_by_section"] != "0" &&  strtolower($_POST["hide_back_button"]) != "on") {
+                    $_POST["hide_back_button"] = "on";
                 }
                 // Survey on POST
             } elseif (strtolower(PAGE) === 'surveys/index.php' && isset($_GET['s'])) {
@@ -140,8 +136,6 @@ The following surveys have both features enabled, please disable `Save and retur
                 }
                 $survey_id = $res["survey_id"];
                 $form_name = $res["form_name"];
-                $event_id = $res["event_id"];
-                $save_and_return = $res["save_and_return"];
                 if (!$this->CheckEncForm($form_name)) {
                     return;
                 }
@@ -155,11 +149,7 @@ The following surveys have both features enabled, please disable `Save and retur
                 }
                 // Data entry form on POST
             } elseif (strtolower(PAGE) === 'dataentry/index.php') {
-                $pid = $_GET["pid"];
-                $event_id = $_GET["event_id"];
                 $form_name = $_GET["page"];
-                $instance = $_GET["instance"];
-
                 if (!$this->CheckEncForm($form_name)) {
                     return;
                 }
