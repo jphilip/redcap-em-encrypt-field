@@ -17,7 +17,6 @@
     ],
     "permissions": [
         "redcap_every_page_before_render",
-        "redcap_module_save_configuration",
         "redcap_data_entry_form"
     ],
     "enable-every-page-hooks-on-system-pages": false,
@@ -40,7 +39,7 @@
       }
 	],
   "compatibility": {
-    "php-version-min" : "7.2.10",
-    "redcap-version-min": "10.3.3"
+    "php-version-min" : "7.2.0",
+    "redcap-version-min": "10.3.0"
   }   
 }

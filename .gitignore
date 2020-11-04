@@ -1,4 +1,3 @@
 .vscode
-R-decrypt/.Rproj.user
-R-decrypt/.Rhistory
-.Rproj.user
+example/R-decrypt/.Rproj.user
+example/R-decrypt/.Rhistory

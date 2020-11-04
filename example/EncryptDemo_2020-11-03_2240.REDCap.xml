@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:redcap="https://projectredcap.org" xsi:schemaLocation="http://www.cdisc.org/ns/odm/v1.3 schema/odm/ODM1-3-1.xsd" ODMVersion="1.3.1" FileOID="000-00-0000" FileType="Snapshot" Description="Encrypt demo" AsOfDateTime="2020-11-03T22:40:53" CreationDateTime="2020-11-03T22:40:53" SourceSystem="REDCap" SourceSystemVersion="10.3.8">
+<Study OID="Project.EncryptDemo">
+<GlobalVariables>
+	<StudyName>Encrypt demo</StudyName>
+	<StudyDescription>This file contains the metadata, events, and data for REDCap project "Encrypt demo".</StudyDescription>
+	<ProtocolName>Encrypt demo</ProtocolName>
+	<redcap:RecordAutonumberingEnabled>1</redcap:RecordAutonumberingEnabled>
+	<redcap:CustomRecordLabel></redcap:CustomRecordLabel>
+	<redcap:SecondaryUniqueField></redcap:SecondaryUniqueField>
+	<redcap:SchedulingEnabled>0</redcap:SchedulingEnabled>
+	<redcap:SurveysEnabled>1</redcap:SurveysEnabled>
+	<redcap:SurveyInvitationEmailField></redcap:SurveyInvitationEmailField>
+	<redcap:Purpose>0</redcap:Purpose>
+	<redcap:PurposeOther></redcap:PurposeOther>
+	<redcap:ProjectNotes></redcap:ProjectNotes>
+	<redcap:MissingDataCodes></redcap:MissingDataCodes>
+	<redcap:SurveysGroup>
+		<redcap:Surveys form_name="consent" title="Consent" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="0" display_page_number="0" question_auto_numbering="0" survey_enabled="1" save_and_return="0" save_and_return_code_bypass="0" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="0" hide_back_button="0" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" end_survey_redirect_next_survey="1" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="&lt;p&gt;Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached.&lt;/p&gt;" survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="f_name" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="1" pdf_econsent_signature_field1="signature" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+		<redcap:Surveys form_name="demo" title="demo" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="1" display_page_number="0" question_auto_numbering="1" survey_enabled="1" save_and_return="0" save_and_return_code_bypass="0" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="0" hide_back_button="1" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" end_survey_redirect_next_survey="1" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="&lt;p&gt;Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached.&lt;/p&gt;" survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="f_name" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="1" pdf_econsent_signature_field1="" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+		<redcap:Surveys form_name="invalid_survey_options" title="invalid_survey_options" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="1" display_page_number="0" question_auto_numbering="1" survey_enabled="1" save_and_return="0" save_and_return_code_bypass="0" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="0" hide_back_button="0" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" end_survey_redirect_next_survey="0" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="&lt;p&gt;Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached.&lt;/p&gt;" survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="0" pdf_econsent_signature_field1="" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+	</redcap:SurveysGroup>
+</GlobalVariables>
+<MetaDataVersion OID="Metadata.EncryptDemo_2020-11-03_2240" Name="Encrypt demo" redcap:RecordIdField="record_id">
+	<FormDef OID="Form.consent" Name="Consent" Repeating="No" redcap:FormName="consent">
+		<ItemGroupRef ItemGroupOID="consent.record_id" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="consent.consent_timestamp" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="consent.consent_complete" Mandatory="No"/>
+	</FormDef>
+	<FormDef OID="Form.demo" Name="demo" Repeating="No" redcap:FormName="demo">
+		<ItemGroupRef ItemGroupOID="demo.demo_timestamp" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="demo.demo_complete" Mandatory="No"/>
+	</FormDef>
+	<FormDef OID="Form.invalid_survey_options" Name="invalid_survey_options" Repeating="No" redcap:FormName="invalid_survey_options">
+		<ItemGroupRef ItemGroupOID="invalid_survey_options.invalid_survey_options_timestamp" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="invalid_survey_options.invalid_survey_options_complete" Mandatory="No"/>
+	</FormDef>
+	<ItemGroupDef OID="consent.record_id" Name="Consent" Repeating="No">
+		<ItemRef ItemOID="record_id" Mandatory="No" redcap:Variable="record_id"/>
+		<ItemRef ItemOID="redcap_survey_identifier" Mandatory="No" redcap:Variable="redcap_survey_identifier"/>
+		<ItemRef ItemOID="consent_timestamp" Mandatory="No" redcap:Variable="consent_timestamp"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="consent.consent_timestamp" Name="Consent" Repeating="No">
+		<ItemRef ItemOID="consent_timestamp" Mandatory="No" redcap:Variable="consent_timestamp"/>
+		<ItemRef ItemOID="f_name" Mandatory="Yes" redcap:Variable="f_name"/>
+		<ItemRef ItemOID="signature" Mandatory="Yes" redcap:Variable="signature"/>
+		<ItemRef ItemOID="other_field" Mandatory="No" redcap:Variable="other_field"/>
+		<ItemRef ItemOID="other_2" Mandatory="No" redcap:Variable="other_2"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="consent.consent_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="consent_complete" Mandatory="No" redcap:Variable="consent_complete"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="demo.demo_timestamp" Name="demo" Repeating="No">
+		<ItemRef ItemOID="demo_timestamp" Mandatory="No" redcap:Variable="demo_timestamp"/>
+		<ItemRef ItemOID="no_crypt_instrument_tag" Mandatory="No" redcap:Variable="no_crypt_instrument_tag"/>
+		<ItemRef ItemOID="no_crypt_instrument_tag_2" Mandatory="No" redcap:Variable="no_crypt_instrument_tag_2"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="demo.demo_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="demo_complete" Mandatory="No" redcap:Variable="demo_complete"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="invalid_survey_options.invalid_survey_options_timestamp" Name="invalid_survey_options" Repeating="No">
+		<ItemRef ItemOID="invalid_survey_options_timestamp" Mandatory="No" redcap:Variable="invalid_survey_options_timestamp"/>
+		<ItemRef ItemOID="some_text_field" Mandatory="No" redcap:Variable="some_text_field"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="invalid_survey_options.invalid_survey_options_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="invalid_survey_options_complete" Mandatory="No" redcap:Variable="invalid_survey_options_complete"/>
+	</ItemGroupDef>
+	<ItemDef OID="record_id" Name="record_id" DataType="text" Length="999" redcap:Variable="record_id" redcap:FieldType="text">
+		<Question><TranslatedText>Record ID</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="redcap_survey_identifier" Name="redcap_survey_identifier" DataType="text" Length="999" redcap:Variable="redcap_survey_identifier">
+		<Question><TranslatedText>Survey Identifier</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="consent_timestamp" Name="consent_timestamp" DataType="datetime" Length="999" redcap:Variable="consent_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="consent_timestamp" Name="consent_timestamp" DataType="datetime" Length="999" redcap:Variable="consent_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="f_name" Name="f_name" DataType="text" Length="999" redcap:Variable="f_name" redcap:FieldType="text" redcap:Identifier="y" redcap:RequiredField="y" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>First name</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="signature" Name="signature" DataType="text" Length="999" redcap:Variable="signature" redcap:FieldType="textarea" redcap:Identifier="y" redcap:RequiredField="y" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>Signature</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="other_field" Name="other_field" DataType="text" Length="999" redcap:Variable="other_field" redcap:FieldType="text">
+		<Question><TranslatedText>Other field (not crypted)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="other_2" Name="other_2" DataType="boolean" Length="1" redcap:Variable="other_2" redcap:FieldType="yesno" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>Non text field (Ignored even if @ENCRYPT_FIELD is set)</TranslatedText></Question>
+		<CodeListRef CodeListOID="other_2.choices"/>
+	</ItemDef>
+	<ItemDef OID="consent_complete" Name="consent_complete" DataType="text" Length="1" redcap:Variable="consent_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="consent_complete.choices"/>
+	</ItemDef>
+	<ItemDef OID="demo_timestamp" Name="demo_timestamp" DataType="datetime" Length="999" redcap:Variable="demo_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="no_crypt_instrument_tag" Name="no_crypt_instrument_tag" DataType="text" Length="999" redcap:Variable="no_crypt_instrument_tag" redcap:FieldType="text">
+		<Question><TranslatedText>No crypt instrument (field with no tag)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="no_crypt_instrument_tag_2" Name="no_crypt_instrument_tag_2" DataType="text" Length="999" redcap:Variable="no_crypt_instrument_tag_2" redcap:FieldType="text" redcap:FieldAnnotation="@ENCRYPT_FIELD">
+		<Question><TranslatedText>No crypt instrument (field with tag)</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="demo_complete" Name="demo_complete" DataType="text" Length="1" redcap:Variable="demo_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="demo_complete.choices"/>
+	</ItemDef>
+	<ItemDef OID="invalid_survey_options_timestamp" Name="invalid_survey_options_timestamp" DataType="datetime" Length="999" redcap:Variable="invalid_survey_options_timestamp">
+		<Question><TranslatedText>Survey Timestamp</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="some_text_field" Name="some_text_field" DataType="text" Length="999" redcap:Variable="some_text_field" redcap:FieldType="text">
+		<Question><TranslatedText>Some text field</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="invalid_survey_options_complete" Name="invalid_survey_options_complete" DataType="text" Length="1" redcap:Variable="invalid_survey_options_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="invalid_survey_options_complete.choices"/>
+	</ItemDef>
+	<CodeList OID="other_2.choices" Name="other_2" DataType="boolean" redcap:Variable="other_2">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Yes</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>No</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="consent_complete.choices" Name="consent_complete" DataType="text" redcap:Variable="consent_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="demo_complete.choices" Name="demo_complete" DataType="text" redcap:Variable="demo_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="invalid_survey_options_complete.choices" Name="invalid_survey_options_complete" DataType="text" redcap:Variable="invalid_survey_options_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+</MetaDataVersion>
+</Study>
+<ClinicalData StudyOID="Project.EncryptDemo" MetaDataVersionOID="Metadata.EncryptDemo_2020-11-03_2240">
+	<SubjectData SubjectKey="1" redcap:RecordIdField="record_id">
+			<FormData FormOID="Form.consent" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="consent.record_id" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="record_id" Value="1"/>
+					<ItemData ItemOID="consent_timestamp" Value="2020-11-03 19:38:26"/>
+					<ItemData ItemOID="f_name" Value="{&quot;payload&quot;:&quot;OQkRpOnb09t7GL50EiTkYXqfrl28DH5FncT4hTK/jR0=&quot;,&quot;token&quot;:&quot;EjeUXJ47q8i5gDRuVO/W8yve9/9aH8M+hLsWGRLGsiuuTY57AKLMO3aqpUeOnOHWEVgkAfbAcAYLoMzQKquk2VfGVDIDlohIm7z/FtBmC7AaOxu9Bim6iLd2y5hHFgwweEeyxSxjgkBZYZsk/xodF2AWP75ZWtz/MqItzYPeCZB71T1ZtPKn+U43rMc9PHXZpMvAS4W8enUEg/rVPbIGU1cbHls6T5hMe+Gmjw3Q7MzmpG6T5vS72ASHZB037GJosWOF47mziNVA42GuuePGZDpUMLGWUdmI308Cbj0T/GEOQJJlR6r1d9UAJAqmw+98HnvNAHkdPVlMScUcbmhnXdAewNmblxqpDrXllCEof2BOyiNiFnFIR0iC3GByFWSNrV2rgvyarT3rASR+4hZtBuRsPmx4PAqLYeLf9oGVv2DWYE0fdwmR4kTEZsb3rHWe6dbTliY1vLMqJ+dNCJhAIj4NbYUziOe4Z+Y4rLKKgmx0BtEe0ktIx1TWG95TDznb&quot;,&quot;iv&quot;:&quot;p4SI3U418ssPk4u2koyhLw==&quot;}"/>
+					<ItemData ItemOID="signature" Value="{&quot;payload&quot;:&quot;tHSPZNUGz/3DMuocSHAlgALirI1/ZDtodPSPjvyl+19IvprMPeouNZRDQq2mCzkD4C84h4m8jYBeFtrhfia70f9Y+ppxjWVKtTKFpL5sj1yx0pLk7yJXCUumVIUgw5A2QELgusNFsgXlWpzXf1gkDY0LlLFtMy4mWtqPB2uqWik=&quot;,&quot;token&quot;:&quot;NXX8a6mFiw/u5BQrKU/SDsp4QLBlnuaA1eAJLoP1rcM1BTUVqALcPuYXbPD6FqK+ECLYgL3Ja/Nfp+NL9SDWa6wNnQAfIWl4OWSkntN4dC7j7Gb/DU0vO2+dLAhevaXoogtlMUnqLg9X53l9J0uWvZsR4kfdM4EolmeTNja/8lVuIw4pDM4KMA5SUn/N2p38ITkm2a77TowhSlAl2m7pW4Fg0F/MmbE4BoWV2ADUfEOvD93cEgran1OTmTR3aqQdRCvI1vtKceajQ+fz9+BLjhHTzBy7EHk2YdaQM4ZMbscwGYiBlyeYxaLkSA0JgXCHKGrdB/ifBUV/ZcexNvlbG6MQ3Xnc9MI+Tyl3c8twjsOKfPIAb5bRh6v3NMtj10jBUzR5T14Y3/IL7i+HpDoBWpLhsqVFdns0/W5rIA9p4CUNQo01BeUH3yTyebqM33DxzRzWZbTB5Avt1BK2WSu+h2pSAcNHQg8bQZ92Af0+c6JPYEn3yT/uNRwM2LoIPloY&quot;,&quot;iv&quot;:&quot;YwdSHshL1pzoKcTm7yIGSw==&quot;}"/>
+					<ItemData ItemOID="other_field" Value="This one should not be encrypted"/>
+					<ItemData ItemOID="other_2" Value="1"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="consent.consent_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="consent_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.demo" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="demo.demo_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_complete" Value="0"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.invalid_survey_options" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="invalid_survey_options.invalid_survey_options_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="invalid_survey_options_complete" Value="0"/>
+				</ItemGroupData>
+			</FormData>
+	</SubjectData>
+	<SubjectData SubjectKey="2" redcap:RecordIdField="record_id">
+			<FormData FormOID="Form.consent" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="consent.record_id" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="record_id" Value="2"/>
+					<ItemData ItemOID="consent_timestamp" Value="2020-11-03 19:41:29"/>
+					<ItemData ItemOID="f_name" Value="{&quot;payload&quot;:&quot;HML8jloPL6/Ekty6Onge89Bzr3reXjld+2RrFvD9XeQ=&quot;,&quot;token&quot;:&quot;l6BZboXOYHFMgCgoeKGbk25hcRD+wLA7wBWDGDW0RTkotbkoLCzfS897YD6Gp+dFU62RU+22OTgEd5U6s+My+N+OdI6hXREnLydu9jymSX4Rl5U4Qi2mbkc9Ivz9E/uETx+i6yCEmFbNxJ0yJY6/mQrTxyAxZslWIpSjxpdxRukQSyvG8hc5RLMFt/1tZnSAg0BPROx6aminP5SfiXmWBfEtgd317fQFlgiyN0/k2eli+T6q0/1zad1SsYR10poLrJ0D3pODE2rxZfEbJY7JonqcA8X4cKYW6gT4i4a7QsZ3++WgGO0awHtAnvyE2WklY34uTtzxI6PUKvVxQ/zvWWx2CzNlMgPGWxydVRfnKqyOzGhiofYCW3vlz9dwjICl2qERAXhgLz9T1oX6QjQ4MbB1/o3VvWir1hREkgxGNv+0OAbYuPYJh0DQrrPxJ7jqs27+/czIfli1g+jSbNDOK1k6GUpl+oeUlMPD1Ifpj/aau+Tqmm98meh1KqsGaOe3&quot;,&quot;iv&quot;:&quot;m8b9YA7qczH1MgrXzz5DHg==&quot;}"/>
+					<ItemData ItemOID="signature" Value="{&quot;payload&quot;:&quot;zdGbOeiuxXRnrtzrtz6IIOC1G9t4IozQTrR+d+VhGP3PHf9rZweej+X2hzp92gyFaw4f60CauDElI6EYticqtSY2Fpu7J1tz8FAD2oOSVj8YYhdXScwAl2gdQcyUcXfn&quot;,&quot;token&quot;:&quot;NQDP5qfyPNgfLGwTjVMsdusI9r1410Im9z+ttSnM2ehI0x8vHTJgpF3+Ln+/IstVLh5pD14gnyniFNUdPlcRK82qi7q5rWczolvHdBSzF6oJa0ULzM/ixXeGzVfkLUBZWaPC/AGqW3ezj5YQ1MdQZIO8uiObyxmB90kO6TkHTClBqlSqMudGCYDfIxmRudST3+2CqDClsyA6DIFjv0NKN1RcE15QMNkXiQklbeGvpEHGUmjbEGvNUUkCSNkiuEW5I0B+rYz1cj+VZkxdqSpJut6AuTJjs6Llas63yw9wPBg/tDYZAUMkY2XlybIw/wg26X1n0KPQ7D/wcHW0baW6Wz+zggLf+sNPuPSY+CymspDmOvv2z4GmdCpHlZ7re4M5zoZXyHUM0c/vsJ3x+V7eGProLozyxF6ZdUrKiZJLgSF3OnC6iNGQb8TLgWKHn5Oksd5ftpt0JTSbbHeJIB/JSHMSwNslQMtYGtQ8G6dVWVeBhRL2UBVXKhKWQaAdSNfR&quot;,&quot;iv&quot;:&quot;eSnseHOJHjQGVdtx9hyz+w==&quot;}"/>
+					<ItemData ItemOID="other_field" Value="Should not be encrypted."/>
+					<ItemData ItemOID="other_2" Value="1"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="consent.consent_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="consent_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.demo" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="demo.demo_timestamp" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_timestamp" Value="2020-11-03 19:41:56"/>
+					<ItemData ItemOID="no_crypt_instrument_tag" Value="Should not be encrypted."/>
+					<ItemData ItemOID="no_crypt_instrument_tag_2" Value="Should not be encrypted."/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="demo.demo_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="demo_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+			<FormData FormOID="Form.invalid_survey_options" FormRepeatKey="1">
+				<ItemGroupData ItemGroupOID="invalid_survey_options.invalid_survey_options_timestamp" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="invalid_survey_options_timestamp" Value="2020-11-03 19:42:52"/>
+					<ItemData ItemOID="some_text_field" Value="Setting this form for encryption should not be possible without modifying survey options"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="invalid_survey_options.invalid_survey_options_complete" ItemGroupRepeatKey="1">
+					<ItemData ItemOID="invalid_survey_options_complete" Value="2"/>
+				</ItemGroupData>
+			</FormData>
+	</SubjectData>
+</ClinicalData>
+</ODM>

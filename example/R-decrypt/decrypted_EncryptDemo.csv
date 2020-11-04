@@ -1,0 +1,9 @@
+"record_id","redcap_survey_identifier","consent_timestamp","f_name","signature","other_field","other_2","consent_complete","demo_timestamp","no_crypt_instrument_tag","no_crypt_instrument_tag_2","demo_complete","invalid_survey_options_timestamp","some_text_field","invalid_survey_options_complete"
+1,NA,"2020-11-03 19:38:26","First name should be encrypted","Signature should be encrypted.
+Signature should be encrypted.
+Signature should be encrypted.
+Signature should be encrypted.","This one should not be encrypted",1,2,"","","",0,"","",0
+2,NA,"2020-11-03 19:41:29","Should be encrypted.","Should be encrypted.
+Should be encrypted.
+Should be encrypted.
+Should be encrypted.","Should not be encrypted.",1,2,"2020-11-03 19:41:56","Should not be encrypted.","Should not be encrypted.",2,"2020-11-03 19:42:52","Setting this form for encryption should not be possible without modifying survey options",2
