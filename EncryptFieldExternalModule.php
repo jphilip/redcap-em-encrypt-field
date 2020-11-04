@@ -89,13 +89,18 @@ The following surveys has encryption and some of those options enabled, to use e
             }
         }
         if (count($enc_fields) > 0) {
-            $js = "<script type='text/javascript'>\n";
+            $js = "<script type='text/javascript'>
+    // IIFE - Immediately Invoked Function Expression
+    (function($, window, document) {
+        // The $ is now locally scoped\n";
             foreach ($enc_fields as $enc_field) {
                 $dec_str = "'{$this->encrypted_str}'";
-                $js .= "\$('[name=${enc_field["field_name"]}]').prop('readonly', true);\n";
-                $js .= "\$('[name=${enc_field["field_name"]}]').val($dec_str);\n";
+                $js .= "        \$('[name=${enc_field["field_name"]}]').prop('readonly', true);\n";
+                $js .= "        \$('[name=${enc_field["field_name"]}]').val($dec_str);\n";
             }
-            $js .= "</script>";
+            $js .= "    }(window.jQuery, window, document));
+    // The global jQuery object is passed as a parameter
+</script>\n";
             echo($js);
         }
     }
