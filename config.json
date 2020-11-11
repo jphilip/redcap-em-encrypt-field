@@ -4,7 +4,7 @@
    "description": "This module provides a way to encrypt some fields of an instrument.",
    "versions": [
       {
-        "0.1.0": "Initial Development Version"
+        "0.2.0": "Second Development Version. Added hash to verify field integrity."
       }
     ],  
    "documentation": "README.md",

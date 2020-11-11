@@ -3,6 +3,7 @@ library(rjson)
 
 
 # Individual string decryption
+# Updated for version 0.2.0 which includes a hash to verify field integrity
 
 decrypt.field <- function(input, keyfile) {
   tryCatch({
@@ -14,14 +15,19 @@ decrypt.field <- function(input, keyfile) {
     input.b <- lapply(input.l, base64_decode)
     key <- read_key(keyfile)
     plain.b <- decrypt_envelope(input.b$payload, input.b$iv, input.b$token, key)
-    result <- rawToChar(plain.b)
+    hplain <- rawToChar(plain.b)
+    hash <- substr(hplain, 1, 64)
+    result <- substring(hplain, 65)
+    new.hash <- sha256(result)
+    if (!identical(hash, unclass(new.hash)))
+      stop(sprintf("Field differs from original); skipping '%s'...\n", substr(input, 1, 60)))
   },
   error=function(e) {cat(sprintf("Invalid encrypted string; skipping '%s'...\n", substr(input, 1, 60)))})
   return(result)
 }
 
 # csv file decryption function
-# Returns a list with the decrypted data frame and the number of fields decrypted
+# Returns a list with the decrypted data frame and the number of fields decrypted and saves the decrypted csv file 
 
 decrypt.csv <- function (f, keyfile, new.file=paste0("decrypted_", f)) {
   report <- read.csv(f, header=T, as.is=T)
@@ -30,23 +36,23 @@ decrypt.csv <- function (f, keyfile, new.file=paste0("decrypted_", f)) {
     for (c in seq(ncol(report))) {
       dec <- decrypt.field(report[r,c], keyfile)
       if (!identical(dec, report[r,c])) {
-        report[r,c] <- dec
+        report[r,c] <- gsub("\r\n", "\n", dec)
         nb.dec <- nb.dec + 1
       }
     }
   }
   write.csv(report, new.file, row.names=F)
-  print(sprintf("%d fields were decrypted", nb.dec))
-  return(list(report, nb.dec))
+  print(sprintf("%d fields were decrypted and verified", nb.dec))
+  return(list(data=report, nb=nb.dec))
 }
 
 
 #### Test decryption with known text encrypted in REDCap
 
-test.enc <- '{"payload":"wRczHB+hc4Dv/cnDMzKBeg==","token":"ndlvI6TVDrkt5WPgnvlY5UWGO9lZL8xBYeEtl0zQ8Q6Uvi+3QRyfc4GH5DqLr0YfpWXzW1C013OlOMHtpcSWx48QVEA5Nx37gIOjIgjTyJZlURWIu6i2bV0u12BhzggwB0e0+vrkfH0+qeXz/Is1R6suFUITzbo6Ax4UYILeCe6No+Isygh8rMvRtxBarbQaejxfokoiv+cS/AmxQJibAC4pYiCd3kp4ZRynLiPEAYBuBhgpJL4TlOUVuUu810iYU570GzA83W7V+Z3TXKUkpfVo7mWnKAQhRT1uUScghAC2807x8xWLWu1w+c4iyLUBQJA/Mo89q30KJ1EqDYQEcRM/yYZmxuRf6SNbPSFIJZU9IGRCFtAFfqsXZmHTko+XFSzCYtfiMhPxLM9CTwgCOeIwrFIHLRmRVwSYq0SJAmC7fog17MMkfe7y5Kxt3QnuLp9WO8JaDqv8sVokvRu7R76wUb7qsooFdyWor9fhqFnSsCEw5l73YbWWK0y01AZ0","iv":"Kxr4ktM8dGbc1EDuDaX+jQ=="}'
+test.enc <- '{"payload":"lk1Da79+b1m41tgHJGQ8EghGGW4pXN2YkSn9CpWUW4zbp1XH+J4/Ai2VWDecRRHp0GpdUvFhaxU3owODMCe1Cc+kFk+ZC57ZHQjV0pyNEts=","token":"HM4zb9Yi4C+mK52yjmoKatF+x3KeK/SqWWZYZw5LpOeXeisvo9WLXLzkG1c46ob1c/3tHq/0RSanCO5p4ACfdjHt8WkucpeAPGer5PQugc5SyiaQg1MOfWq2BRiVhJzMkeqDIWRE/fcspFN+4irSJxIpc/Zq1Y2JL5KmV2+cXAgfV8fg7nHtAGLOoiqv90MTgeKc2uPq3iKSKWlAb9YuJvuNdYudKUJK9QiseF4YPtTZpOPhWMR5v7/uYgSbTi8kAfnHOs8L2dhx5L40JftU8ZA9Daj1j9xUSyth8CvIBkWCWy9RCLWZt3FKvZp0uLIg419WoFEnXTp8692XcAaTXruCW0/NA58yJW695mjcUxQbm9AqgEtbXb2X1oREoLUw/J/JMrEKFww5Wfgze6lMYNt+ugdzo2JFEpM5dHqAkD53zRpgo/k2eK6DQpXgPdlKp90F5ehRjh0h3Nj48ROosXv1ioFXITmPEQz0vEaELyjcu4yAzZI5peKGv3nCpu0U","iv":"Pu2q2rT1e6vSzu11u9GoOw=="}'
 
 test.plain <- decrypt.field(test.enc, "key.pem")
-stopifnot(identical(test.plain, "ccccccccccccc"))
+stopifnot(identical(test.plain, "First"))
 
 # Decrypt the whole demo csv file
 

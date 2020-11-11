@@ -1,5 +1,9 @@
 This external module allows you to encrypt certain fields in surveys, using mixed encryption with openssl (RSA + AES-256 in CBC mode), thus making it impossible for hackers or malicious system administrators to read these fields (Only a public key is stored on the server).
 
+## Version history
+- 0.1.0 Initial developement version.
+- 0.2.0 Added a SHA256 hash to the payload to allow verification of the integrity of each field upon decryption.
+
 ## Instructions
 
 1. Install the EM as usual.

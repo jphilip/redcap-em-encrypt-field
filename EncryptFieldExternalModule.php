@@ -58,9 +58,13 @@ The following surveys has encryption and some of those options enabled, to use e
             $this->pub_key = $this->getProjectSetting('public-key');
         }
 
+        # Concatenate a hash of the data with the data for authentication upon decryption
+        $hash = openssl_digest($data, "sha256");
+        $hdata = $hash . $data;
+
         $sealed = $e = null;
         $iv = openssl_random_pseudo_bytes(32);
-        openssl_seal($data, $sealed, $e, array($this->pub_key), "AES-256-CBC", $iv);
+        openssl_seal($hdata, $sealed, $e, array($this->pub_key), "AES-256-CBC", $iv);
 
         $payload = base64_encode($sealed);
         $token = base64_encode($e[0]);
