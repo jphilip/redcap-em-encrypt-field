@@ -2,7 +2,7 @@
 /**
  * REDCap External Module: EncryptField
  * Action tag to encrypt text fields is @ENCRYPT_FIELD.
- * The form holding the tagged field also has to be neabled in the module's project options
+ * The form holding the tagged field also has to be enabled in the module's project options
  * An RSA public key also has to be uploaded in the module's project options
  * Decryption is not done by REDCap at the moment, but R functions are provided to decrypt data
  * @author Jacques Philip, Center for Alaska Native Health Research, University of Alaska Fairbanks

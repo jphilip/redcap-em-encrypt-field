@@ -10,8 +10,8 @@ This external module allows you to encrypt certain fields in surveys, using mixe
 2. Enable at least 1 instrument as survey in REDCap.
 3. Enable 1 or more of these surveys for encryption in the module's project options.
 4. Generate an RSA key pair and export public and private keys in pem format (>= 2048 bits is recommended).
-Google on how to do this if needed, e.g. on Windows 10: [https://phoenixnap.com/kb/generate-ssh-key-windows-10](https://phoenixnap.com/kb/generate-ssh-key-windows-10).
-Make sure you do not use the demo keys provided in this repository, you need to generate your own.
+Google on how to do this if needed, e.g. [http://lunar.lyris.com/help/lm_help//11.3/Content/generating_public_and_private_keys.html](http://lunar.lyris.com/help/lm_help//11.3/Content/generating_public_and_private_keys.html).
+Make sure you do not use the demo keys provided in this repository for your own projects, you need to generate your own keys.
 5. Paste the public key in the module's project options.
 6. Assign the @ENCRYPT\_FIELD smart tag to the fields you want to encrypt (Only text and notes are currently supported).
 7. Some R functions are provided in the package to decrypt individual field values or a cvs file exported by REDCap, using your private key. Implementations in other languages are easy to implement using the examples from the repository: [https://github.com/CodeReaper/unsealed-secrets](https://github.com/CodeReaper/unsealed-secrets)
